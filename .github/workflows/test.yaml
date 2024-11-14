@@ -36,24 +36,22 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: "pip-${{ matrix.python-version }}-${{ hashFiles('requirements.txt') }}"
+        key: "pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}"
         restore-keys: |
           pip-${{ matrix.python-version }}-
 
-    # Install dependencies from requirements.txt
+    # Install project in editable mode with dev dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -e .[dev]
 
-    # Install and run Ruff for linting
+    # Run Ruff for linting
     - name: Lint
       run: |
-        pip install ruff
         ruff check . --fix
 
     # Run the tests
     - name: Run Tests
       run: |
-        pip install pytest
         pytest --maxfail=5 --disable-warnings
