@@ -1,6 +1,6 @@
 # Label Shift Estimation for Named Entity Recognition using Familiarity
 
-**Our paper got accepted to NAACL 2025 🎉 See our [paper](https://arxiv.org/abs/2412.10121) and find the datasets on the [huggingface hub]()!**
+**Our paper got accepted to NAACL 2025 🎉 See our [paper](https://arxiv.org/abs/2412.10121) and find the datasets on the [huggingface hub](https://huggingface.co/flair)!**
 
 This repository computes the label shift for zero-shot NER settings using the Familiarity metric. The metric uses semantic similarity between the sets of label seen during training and used for evaluation to indicate how "familiar" the trained model will be with the evaluation labels.
 
