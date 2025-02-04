@@ -47,7 +47,7 @@ def convert_to_hf_format(data_point):
             try:
                 tags[start] = "B-" + label
                 tags[start + 1 : end + 1] = ["I-" + label] * (end - start)
-            except:
+            except IndexError:
                 pass
     return {"tokens": data_point["tokenized_text"], "ner_tags": tags, "spans": spans}
 
@@ -60,7 +60,7 @@ def create_splits(
 ):
     try:
         df = pd.read_pickle("new_splits.pkl")
-    except:
+    except FileNotFoundError:
         raise FileNotFoundError("Please run the compute_new_splits function first to generate the data.")
     df = df[(df["train_dataset"] == dataset_name)]
 
