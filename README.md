@@ -1,5 +1,7 @@
 # Label Shift Estimation for Named Entity Recognition using Familarity
 
+**Our paper got accepted to NAACL 2025 🎉 See our [paper](https://arxiv.org/abs/2412.10121) and find the datasets on the [huggingface hub]()!**
+
 This repository computes the label shift for zero-shot NER settings using the Familarity metric. The metric uses semantic similarity between the sets of label seen during training and used for evaluation to indicate how "familiar" the trained model will be with the evaluation labels.
 
 ## Installation
@@ -32,12 +34,13 @@ compute_metric(
 
 ## Citation
 ```
-@misc{familarity,
-  author = {Golde, Jonas},
-  title = {Label Shift Estimation using Familarity},
-  year = {2024},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/whoisjones/familarity}},
+@misc{golde2024familiaritybetterevaluationzeroshot,
+      title={Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data}, 
+      author={Jonas Golde and Patrick Haller and Max Ploner and Fabio Barth and Nicolaas Jedema and Alan Akbik},
+      year={2024},
+      eprint={2412.10121},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2412.10121}, 
 }
 ```
