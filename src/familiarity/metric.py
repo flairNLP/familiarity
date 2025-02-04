@@ -5,6 +5,8 @@ from typing import List, Union
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
+
 from familiarity.embedding_models import LabelEmbeddingModel, load_embedding_model
 from familiarity.logger import setup_logger
 from familiarity.utils import (
@@ -15,7 +17,6 @@ from familiarity.utils import (
     iterate_dict_in_batches,
     make_output_path,
 )
-from tqdm import tqdm
 
 
 def compute_embeddings(
