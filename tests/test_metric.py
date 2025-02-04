@@ -1,8 +1,7 @@
 from collections import Counter
 
 import pytest
-
-from familarity.metric import compute_embeddings, compute_familarity, compute_similarities, weighted_average
+from familiarity.metric import compute_embeddings, compute_familiarity, compute_similarities, weighted_average
 
 
 def test_compute_embeddings(dummy_ner_train, dummy_ner_test, sample_embedding_model, tmp_path):
@@ -38,7 +37,7 @@ def test_compute_similarities(dummy_ner_train, dummy_ner_test, sample_embedding_
     assert (tmp_path / "similarity_df.pkl").exists()
 
 
-def test_compute_familarity(dummy_ner_train, dummy_ner_test, sample_embedding_model, tmp_path):
+def test_compute_familiarity(dummy_ner_train, dummy_ner_test, sample_embedding_model, tmp_path):
     train_counter = Counter(dummy_ner_train)
     test_counter = Counter(dummy_ner_test)
     embedding_df = compute_embeddings(
@@ -47,13 +46,15 @@ def test_compute_familarity(dummy_ner_train, dummy_ner_test, sample_embedding_mo
         model=sample_embedding_model,
     )
     similarity_df = compute_similarities(embedding_df)
-    familarity_df = compute_familarity(similarity_df, k=2, weighting="zipf", output_path=tmp_path, save_embeddings=True)
-    assert "familarity" in familarity_df.columns
-    assert len(familarity_df) == len(test_counter)
-    assert pytest.approx(familarity_df[familarity_df["label"] == "building"]["familarity"].iloc[0]) == 1
-    assert pytest.approx(familarity_df[familarity_df["label"] == "car"]["familarity"].iloc[0]) == 0.907777
-    assert pytest.approx(familarity_df[familarity_df["label"] == "review"]["familarity"].iloc[0]) == 0.912969
-    assert (tmp_path / "familarity_df.pkl").exists()
+    familiarity_df = compute_familiarity(
+        similarity_df, k=2, weighting="zipf", output_path=tmp_path, save_embeddings=True
+    )
+    assert "familiarity" in familiarity_df.columns
+    assert len(familiarity_df) == len(test_counter)
+    assert pytest.approx(familiarity_df[familiarity_df["label"] == "building"]["familiarity"].iloc[0]) == 1
+    assert pytest.approx(familiarity_df[familiarity_df["label"] == "car"]["familiarity"].iloc[0]) == 0.907777
+    assert pytest.approx(familiarity_df[familiarity_df["label"] == "review"]["familiarity"].iloc[0]) == 0.912969
+    assert (tmp_path / "familiarity_df.pkl").exists()
 
 
 @pytest.mark.parametrize(

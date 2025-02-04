@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from familarity.logger import setup_logger
+from familiarity.logger import setup_logger
 
 
 def test_setup_logger(tmp_path: Path, capsys, caplog):

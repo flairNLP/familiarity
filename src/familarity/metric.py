@@ -5,11 +5,9 @@ from typing import List, Union
 
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
-
-from familarity.embedding_models import LabelEmbeddingModel, load_embedding_model
-from familarity.logger import setup_logger
-from familarity.utils import (
+from familiarity.embedding_models import LabelEmbeddingModel, load_embedding_model
+from familiarity.logger import setup_logger
+from familiarity.utils import (
     clipped_cosine_similarity,
     combine_counters,
     cumsum_until,
@@ -17,6 +15,7 @@ from familarity.utils import (
     iterate_dict_in_batches,
     make_output_path,
 )
+from tqdm import tqdm
 
 
 def compute_embeddings(
@@ -82,29 +81,29 @@ def compute_similarities(
     return similarity_df
 
 
-def compute_familarity(
+def compute_familiarity(
     similarity_df: pd.DataFrame,
     k: int = 1000,
     weighting: str = "zipf",
     output_path: Path = None,
     save_embeddings: bool = False,
 ) -> pd.DataFrame:
-    familarity_data = []
+    familiarity_data = []
 
     for label_test in similarity_df["label_test"].unique():
         test_label_df = similarity_df[similarity_df["label_test"] == label_test]
         test_label_df = test_label_df.sort_values("similarity", ascending=False)
         counts = cumsum_until(test_label_df["count_train"], k)
         sims = test_label_df["similarity"][: len(counts)]
-        familarity = weighted_average(sims, counts, k, weighting=weighting)
-        familarity_data.append({"label": label_test, "familarity": familarity})
+        familiarity = weighted_average(sims, counts, k, weighting=weighting)
+        familiarity_data.append({"label": label_test, "familiarity": familiarity})
 
-    familarity_df = pd.DataFrame(familarity_data)
+    familiarity_df = pd.DataFrame(familiarity_data)
 
     if save_embeddings:
-        familarity_df.to_pickle(output_path / "familarity_df.pkl")
+        familiarity_df.to_pickle(output_path / "familiarity_df.pkl")
 
-    return familarity_df
+    return familiarity_df
 
 
 def weighted_average(
@@ -165,8 +164,8 @@ def compute_metric(
     )
 
     similarity_df = compute_similarities(embedding_df, output_path=output_path, save_embeddings=save_embeddings)
-    familarity_df = compute_familarity(
+    familiarity_df = compute_familiarity(
         similarity_df, k=k, weighting=weighting, output_path=output_path, save_embeddings=save_embeddings
     )
     logger.info("Results:\n")
-    logger.info(df_to_prettytable(familarity_df))
+    logger.info(df_to_prettytable(familiarity_df))

@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-
-from familarity.embedding_models import (
+from familiarity.embedding_models import (
     FastTextModel,
     GloveModel,
     SentenceTransformerModel,

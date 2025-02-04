@@ -1,20 +1,20 @@
-# Label Shift Estimation for Named Entity Recognition using Familarity
+# Label Shift Estimation for Named Entity Recognition using Familiarity
 
 **Our paper got accepted to NAACL 2025 🎉 See our [paper](https://arxiv.org/abs/2412.10121) and find the datasets on the [huggingface hub]()!**
 
-This repository computes the label shift for zero-shot NER settings using the Familarity metric. The metric uses semantic similarity between the sets of label seen during training and used for evaluation to indicate how "familiar" the trained model will be with the evaluation labels.
+This repository computes the label shift for zero-shot NER settings using the Familiarity metric. The metric uses semantic similarity between the sets of label seen during training and used for evaluation to indicate how "familiar" the trained model will be with the evaluation labels.
 
 ## Installation
 ```python
-conda create -n familarity python=3.11
-conda activate familarity
+conda create -n familiarity python=3.11
+conda activate familiarity
 pip install -e .
 ```
 
 ## Usage
 ```python
 import numpy as np
-from familarity import compute_metric
+from familiarity import compute_metric
 train_labels_set = ["person", "location", "building", "eagle", "restaurant", "util"]
 train_probs = [0.4, 0.1, 0.1, 0.1, 0.1, 0.2]
 train_labels = np.random.choice(train_labels_set, size=30000, p=train_probs).tolist()

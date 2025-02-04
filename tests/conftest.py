@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-
-from familarity.embedding_models import LabelEmbeddingModel
+from familiarity.embedding_models import LabelEmbeddingModel
 
 
 @pytest.fixture(scope="module")

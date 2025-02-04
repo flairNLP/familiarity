@@ -6,12 +6,11 @@ from typing import Dict, List, Tuple, Union
 
 import numpy as np
 import torch
+from familiarity.utils import get_device
 from huggingface_hub import repo_exists
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 from transformers import AutoModel, AutoTokenizer
-
-from familarity.utils import get_device
 
 
 class LabelEmbeddingModel(ABC):

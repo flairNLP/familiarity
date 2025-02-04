@@ -1,7 +1,7 @@
 [project]
-name = "familarity"
+name = "familiarity"
 dynamic = ["version"]
-description = "Estimating label shift and transfer difficulty using Familarity."
+description = "Estimating label shift and transfer difficulty using Familiarity."
 authors = [{ name = "Jonas Golde", email = "jonas.max.golde@hu-berlin.de" }]
 readme = "README.md"
 requires-python = ">3.8"
@@ -33,7 +33,7 @@ testing = ["pytest"]
 dev = ["black", "isort", "ruff"]
 
 [tool.setuptools]
-packages = ["familarity"]
+packages = ["familiarity"]
 package-dir = { "" = "src" }
 
 [tool.black]

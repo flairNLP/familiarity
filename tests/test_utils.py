@@ -5,8 +5,7 @@ from typing import Any, Dict
 
 import numpy as np
 import pytest
-
-from familarity.utils import (
+from familiarity.utils import (
     clipped_cosine_similarity,
     combine_counters,
     cumsum_until,

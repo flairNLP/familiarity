@@ -36,7 +36,7 @@ def df_to_prettytable(df: pd.DataFrame) -> PrettyTable:
     for idx, row in df.iterrows():
         table.add_row(row, divider=True if idx + 1 == len(df) else False)
 
-    table.add_row(["Marco-Avg. Familarity", round(df["familarity"].mean().item(), 3)])
+    table.add_row(["Marco-Avg. Familiarity", round(df["familiarity"].mean().item(), 3)])
 
     return table
 
