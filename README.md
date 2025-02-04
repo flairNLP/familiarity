@@ -32,6 +32,8 @@ compute_metric(
 )
 ```
 
+If you want to create splits of varying difficult as we done it in the paper, please refer to the script `create_splits_of_varying_difficulty.py`.
+
 ## Citation
 ```
 @misc{golde2024familiaritybetterevaluationzeroshot,
